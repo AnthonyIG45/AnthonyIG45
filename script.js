@@ -14,6 +14,7 @@ function calculateGrade(weight, total) {
 const weightInput = document.getElementById('weight');
 const totalInput = document.getElementById('total');
 const actionButton = document.getElementById('myButton');
+const clearButton = document.getElementById('clearBtn');
 const message = document.getElementById('displayMessage');
 
 actionButton.addEventListener('click', function() {
@@ -25,4 +26,13 @@ actionButton.addEventListener('click', function() {
     } else {
         message.innerText = `The grade is ${calculateGrade(weight, total)}!`;
     }
+});
+
+clearButton.addEventListener('click', function() {
+    // This sets the text inside the boxes to nothing
+    weightInput.value = "";
+    totalInput.value = "";
+        
+    // Optional: Reset the message too
+    message.innerText = "Form cleared!";
 });

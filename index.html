@@ -9,15 +9,21 @@
     <h1>Anthony Goines</h1>
     <p>This is a test. Thank You.</p>
 
-    
-    <label for="weight">Weight Percentage:</label>
-    <input type="text" id="weight" placeholder="Type grade weight here...">
 
-    <label for="total">Total Percentage:</label>
-    <input type="text" id="total" placeholder="Type grade total here...">
+    <div class="input-group">
+        <label for="weight">Total Weight:</label>
+        <input type="text" id="weight">
+    </div>
 
-    <br> <button id="myButton">Click me</button>
-    <p id="displayMessage">Button has not been clicked yet.</p>
+    <div class="input-group">
+        <label for="total">Total Percentage:</label>
+        <input type="text" id="total">
+    </div>
+
+    <button id="submitBtn">Submit</button>
+    <button id="clearBtn">Clear All</button>
+
+    <p id="displayMessage"></p>
 
 
     <script src="script.js"></script>
