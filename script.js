@@ -5,21 +5,18 @@ button.addEventListener("click", function () {
 });
 
 
-// Get references to the elements
-const inputField = document.getElementById('weight');
-const inputField2 = document.getElementById('total');
+const weightInput = document.getElementById('weight');
+const totalInput = document.getElementById('total');
 const actionButton = document.getElementById('myButton');
 const message = document.getElementById('displayMessage');
 
-// Add the event listener
 actionButton.addEventListener('click', function() {
-    // Capture the current text inside the input box
-    const textValue = inputField.value;
+    const weight = weightInput.value;
+    const total = totalInput.value;
 
-    // Check if the input is empty or has text
-    if (textValue.trim() === "") {
-        message.innerText = "Please type something first!";
+    if (weight === "" || total === "") {
+        message.innerText = "Please fill out both boxes!";
     } else {
-        message.innerText = "You typed: " + textValue;
+        message.innerText = `The grade is ${calculateGrade(weight, total)}!`;
     }
 });
