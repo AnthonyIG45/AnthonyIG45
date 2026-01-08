@@ -31,3 +31,13 @@ input[type="text"] {
 input[type="text"]:focus {
     border-color: #007BFF; /* Changes color when user clicks inside */
 }
+
+.input-group {
+    margin-bottom: 15px; /* Adds space below each input "row" */
+}
+
+input {
+    display: block; /* Ensures they take up their own line */
+    padding: 8px;
+    width: 250px;
+}
