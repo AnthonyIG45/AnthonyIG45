@@ -95,3 +95,56 @@ function displayResults() {
     const final = totalWeight > 0 ? (totalGrade / totalWeight).toFixed(2) : 0;
     document.getElementById('finalGradeDisplay').innerText = `Final Calculated Grade: ${final}%`;
 }
+
+// Function to add a row (can be called manually OR by OCR)
+function addRow(category = "", weight = "", score = "") {
+    const row = document.createElement('div');
+    row.className = 'grade-row';
+
+    row.innerHTML = `
+        <input type="text" placeholder="Category" class="cat-name" value="${category}">
+        <input type="number" placeholder="Weight %" class="weight-input" value="${weight}">
+        <input type="number" placeholder="Score %" class="score-input" value="${score}">
+        <button class="remove-btn">✕</button>
+    `;
+
+    row.querySelector('.remove-btn').addEventListener('click', () => row.remove());
+    document.getElementById('grade-rows-container').appendChild(row);
+}
+
+// Modify the OCR processing function to fill the rows instead of calculating
+function processData() {
+    // ... (Your existing OCR logic to get weights and grades) ...
+
+    // Clear existing rows first (optional)
+    document.getElementById('grade-rows-container').innerHTML = '';
+
+    // Loop through detected weights and create a row for each
+    for (let cat in state.weights) {
+        const detectedWeight = (state.weights[cat] * 100).toFixed(0);
+        const detectedScore = state.grades[cat] ? (state.grades[cat][0]).toFixed(0) : "";
+        
+        // This AUTO-FILLS the boxes but doesn't calculate yet
+        addRow(cat, detectedWeight, detectedScore);
+    }
+    
+    document.getElementById('loading').classList.add('hidden');
+}
+
+// Final calculation happens ONLY when they click the calculate button
+document.getElementById('calculateBtn').addEventListener('click', () => {
+    const weights = document.querySelectorAll('.weight-input');
+    const scores = document.querySelectorAll('.score-input');
+    
+    let totalGrade = 0;
+    let totalWeight = 0;
+
+    for (let i = 0; i < weights.length; i++) {
+        const w = parseFloat(weights[i].value) || 0;
+        const s = parseFloat(scores[i].value) || 0;
+        totalGrade += (w * (s / 100));
+        totalWeight += w;
+    }
+
+    document.getElementById('resultDisplay').innerText = (totalGrade).toFixed(2) + "%";
+});

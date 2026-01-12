@@ -11,34 +11,31 @@
     <div class="form-container">
     <header class="main-header">
         <h1>AI Grade Scanner</h1>
-        <p class="subtitle">Upload your documents to calculate your standing instantly.</p>
+        <p class="subtitle">Upload images or enter data manually below.</p>
     </header>
     
     <section class="outline-box upload-grid">
         <div class="drop-zone">
-            <label for="syllabusUpload">Syllabus (Weights)</label>
+            <label>Syllabus (Weights)</label>
             <input type="file" id="syllabusUpload" accept="image/*">
         </div>
         <div class="drop-zone">
-            <label for="gradebookUpload">Gradebook (Scores)</label>
+            <label>Gradebook (Scores)</label>
             <input type="file" id="gradebookUpload" accept="image/*">
         </div>
+        <button id="analyzeBtn" class="sleek-btn" disabled style="grid-column: span 2;">Auto-Fill from Images</button>
     </section>
 
-    <button id="analyzeBtn" class="sleek-btn" disabled>Start Analysis</button>
+    <section class="outline-box">
+        <div id="grade-rows-container">
+            </div>
+        <button id="addRowBtn" class="secondary-btn">+ Add Manual Category</button>
+    </section>
 
-    <div id="loading" class="hidden">
-        <div class="spinner"></div>
-        <span>Extracting text via Tesseract...</span>
+    <div class="action-zone">
+        <button id="calculateBtn" class="sleek-btn success">Calculate Final Grade</button>
+        <div id="resultDisplay" class="final-result">--%</div>
     </div>
-
-    <section id="resultsSection" class="hidden">
-        <div class="outline-box result-card">
-            <h2>Analysis Complete</h2>
-            <div id="finalGradeDisplay">0.00%</div>
-            <p id="weightWarning"></p>
-        </div>
-    </section>
 </div>
     <script src="script.js"></script>
 </body>
